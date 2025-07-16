@@ -18,10 +18,11 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'montserrat', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
             overflow-x: hidden;
+            padding: 10px;;
         }
 
         .slide-container {
@@ -35,12 +36,12 @@
 
         .slide {
             min-width: 100vw;
-            height: 100vh;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 60px;
+            padding: 60px 30px;
             scroll-snap-align: start;
             position: relative;
             background: white;
@@ -68,7 +69,7 @@
         .slide h2 {
             font-size: 2.5rem;
             font-weight: 600;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-align: center;
             color: #667eea;
         }
@@ -132,6 +133,7 @@
             margin-bottom: 30px;
             text-align: center;
             position: relative;
+            line-height: 0.6;
         }
 
         .quote:before,
@@ -145,10 +147,10 @@
         .stat-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            width: 100%;
+            gap: 10px;
+            /* width: 100%;
             max-width: 1000px;
-            margin: 40px 0;
+            margin: 40px 0; */
         }
 
         .stat-card {
@@ -156,7 +158,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
-            padding: 30px;
+            padding: 10px 30px;
             text-align: center;
             transition: transform 0.3s ease;
         }
@@ -172,15 +174,15 @@
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #fbbf24;
             display: block;
             margin-bottom: 10px;
         }
 
-        .stat-card.white .stat-number {
-            color: #dc2626;
+        .stat-card.white {
+            color: #333;
         }
 
         .stat-label {
@@ -191,10 +193,10 @@
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            gap: 10px;
             width: 100%;
-            max-width: 1000px;
-            margin: 40px 0;
+            max-width: max-content;
+            /* margin: 40px 0; */
         }
 
         .feature-card {
@@ -202,7 +204,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
-            padding: 25px;
+            /* padding: 10px 25px; */
             text-align: center;
             transition: transform 0.3s ease;
         }
@@ -218,12 +220,12 @@
         }
 
         .feature-icon {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
         }
 
         .feature-title {
-            font-size: 1.2rem;
+            font-size: 0.7rem;
             font-weight: 600;
             color: #fbbf24;
             margin-bottom: 10px;
@@ -234,7 +236,7 @@
         }
 
         .feature-desc {
-            font-size: 1rem;
+            font-size: 0.5rem;
             opacity: 0.9;
             line-height: 1.5;
         }
@@ -307,10 +309,10 @@
         .roadmap {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 10px;
             width: 100%;
             max-width: 1200px;
-            margin: 40px 0;
+            margin: 20px 0;
         }
 
         .roadmap-item {
@@ -318,7 +320,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
-            padding: 30px;
+            padding: 10px;
             text-align: left;
             border-left: 4px solid #fbbf24;
         }
@@ -392,6 +394,7 @@
 
             .slide h2 {
                 font-size: 2rem;
+                line-height: 1;
             }
 
             .slide p {
@@ -413,6 +416,16 @@
             .roadmap {
                 grid-template-columns: 1fr;
             }
+
+            .stat-title {
+                font-size: 1rem;
+                color: #fbbf24;
+            }
+
+            #stat-subtext{
+                font-size: 0.8rem;
+                padding-top: 2px;
+            }
         }
     </style>
 </head>
@@ -422,16 +435,21 @@
         <!-- Slide 1: Compelling Opening -->
         <div class="slide accent">
             <div class="quote">I was interested… but no one ever got back to me.</div>
-            <p>Every year, millions of potential customers say these words—and walk away. Small business owners are
+            <p>Every year, millions of potential customers say these words and walk away. Small business owners are
                 hustling day and night, but they're dropping the ball on follow-ups… and it's costing them more than
                 they realize.</p>
-            <div class="logo">followupx</div>
-            <p><strong>The AI-powered assistant that makes sure they never miss a follow-up again—on WhatsApp and Email,
-                    where business actually happens.</strong></p>
         </div>
 
         <!-- Slide 2: The Problem -->
         <div class="slide">
+            <h2>Say Hello To</h2>
+
+            <div class="logo">followupx</div>
+            <p><strong>The AI-powered assistant that makes sure you never miss a follow-up again; on WhatsApp and Email,
+                    where business actually happens.</strong></p>
+        </div>
+
+        <div class="slide accent">
             <h2>A $60B Silent Killer</h2>
             <p>Inconsistent follow-up is a silent killer of small business revenue.</p>
 
@@ -442,7 +460,7 @@
                 </div>
                 <div class="stat-card white">
                     <span class="stat-number">44%</span>
-                    <span class="stat-label">give up after just one</span>
+                    <span class="stat-label">Of businessess give up after just one</span>
                 </div>
                 <div class="stat-card white">
                     <span class="stat-number">$60B</span>
@@ -451,8 +469,8 @@
             </div>
 
             <div class="why-section">
-                <div class="why-title">Why?</div>
-                <div class="why-text">They forget. They get overwhelmed. They don't know what to say.</div>
+                <h2>Why?</h2>
+                <p>They forget. They get overwhelmed. They don't know what to say.</p>
             </div>
         </div>
 
@@ -461,26 +479,22 @@
             <h2>AI That Follows Up Like a Human (Only Better)</h2>
             <p><strong>Followupx</strong> is your smart, always-on follow-up assistant.</p>
 
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">✅</div>
-                    <div class="feature-title">Timely Follow-ups</div>
-                    <div class="feature-desc">Crafts human-like follow-ups via WhatsApp and Email</div>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-title">✅ Timely Follow-ups</span>
+                    <p id="stat-subtext">Crafts human-like follow-ups via WhatsApp and Email</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✅</div>
-                    <div class="feature-title">Context Aware</div>
-                    <div class="feature-desc">Understands tone, urgency, and context</div>
+                <div class="stat-card">
+                    <span class="stat-title">✅ Context Aware</span>
+                    <p id="stat-subtext">Understands tone, urgency, and context</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✅</div>
-                    <div class="feature-title">Plug & Play</div>
-                    <div class="feature-desc">Works out-of-the-box with CRMs, calendars, and lead forms</div>
+                <div class="stat-card">
+                    <span class="stat-title">✅ Plug & Play</span>
+                    <p id="stat-subtext">Works out-of-the-box with CRMs, calendars, and lead forms</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✅</div>
-                    <div class="feature-title">Trust Builder</div>
-                    <div class="feature-desc">Builds trust with prospects—automatically</div>
+                <div class="stat-card">
+                    <div class="stat-title">✅ Trust Builder</div>
+                    <p id="stat-subtext">Builds trust with prospects—automatically</p>
                 </div>
             </div>
 
@@ -489,29 +503,26 @@
 
         <!-- Slide 4: Market Opportunity -->
         <div class="slide">
-            <h2>33M Business Owners Need Help</h2>
+            <h2>70M+ Business Owners Need Help</h2>
 
             <div class="stat-grid">
                 <div class="stat-card white">
-                    <div class="feature-icon">📈</div>
-                    <span class="stat-number">33M</span>
-                    <span class="stat-label">small businesses in the U.S. alone</span>
+                    <span class="stat-title">📈 33M</span>
+                    <span class="stat-subtext">small businesses in the U.S. alone</span>
                 </div>
                 <div class="stat-card white">
-                    <div class="feature-icon">🌍</div>
-                    <span class="stat-number">Millions</span>
-                    <span class="stat-label">more globally, struggling with follow-up</span>
+                    <span class="stat-title">🌍 44M</span>
+                    <span class="stat-subtext">micro, small and medium SMEs across Africa</span>
                 </div>
                 <div class="stat-card white">
-                    <div class="feature-icon">📱</div>
-                    <span class="stat-number">2B+</span>
-                    <span class="stat-label">active WhatsApp users</span>
+                    <span class="stat-title">📱 2B+</span>
+                    <span class="stat-subtext">active WhatsApp users</span>
                 </div>
             </div>
-
-            <p>💼 The future of business communication is <span class="highlight">messaging-first</span>, and <span
+<p></p>
+            <p class="">💼 The future of business communication is <span class="highlight">messaging-first</span>, and <span
                     class="highlight">AI-native</span></p>
-            <p>We're not just tapping into a large market—we're riding two unstoppable waves: <strong>AI +
+            <p>We're not just tapping into a large market, we're riding two unstoppable waves: <strong>AI +
                     Messaging.</strong></p>
         </div>
 
@@ -520,29 +531,26 @@
             <h2>Built to Scale Profitably</h2>
             <p><strong>SaaS pricing tiers</strong> based on number of leads, messages, and integrations.</p>
 
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <div class="feature-title">Low Churn</div>
-                    <div class="feature-desc">Deep integration into daily revenue activities</div>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-title">📊 Low Churn</div>
+                    <div class="stat-subtext">Deep integration into daily revenue activities</div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <div class="feature-title">High LTV:CAC</div>
-                    <div class="feature-desc">5:1 ratio projected by Year 1</div>
+                <div class="stat-card">
+                    <div class="stat-title">💰High LTV:CAC</div>
+                    <div class="stat-subtext">5:1 ratio projected by Year 1</div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <div class="feature-title">Expansion Revenue</div>
-                    <div class="feature-desc">Team seats and vertical-specific AI templates</div>
+                <div class="stat-card">
+                    <div class="stat-title">🚀Expansion Revenue</div>
+                    <div class="stat-subtext">Team seats and vertical-specific AI templates</div>
                 </div>
             </div>
-
+<p></p>
             <p><strong>When we help businesses close more deals, they stick around.</strong></p>
         </div>
 
         <!-- Slide 6: Competitive Advantage -->
-        <div class="slide">
+        <!-- <div class="slide">
             <h2>Why We Win</h2>
 
             <div class="feature-grid">
@@ -564,38 +572,37 @@
             </div>
 
             <p><strong>Followupx doesn't add to the business owner's workload. It removes it.</strong></p>
-        </div>
+        </div> -->
 
         <!-- Slide 7: Traction -->
         <div class="slide dark">
-            <h2>Proof It's Working</h2>
+            <h2>Why We Win</h2>
 
-            <div class="placeholder">
+            <!-- <div class="placeholder">
                 [Placeholder for: # of beta users, conversion lifts, retention, revenue, etc.]
-            </div>
+            </div> -->
 
             <div class="stat-grid">
                 <div class="stat-card">
-                    <span class="stat-number">3x</span>
-                    <span class="stat-label">increase in closed leads for early adopters</span>
+                    <span class="stat-number">Focus On SMBs</span>
+                    <span class="stat-label">Not bloated CRMs or enterprise-only tools</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number">60%+</span>
-                    <span class="stat-label">of users set up follow-ups within first 15 minutes</span>
+                    <span class="stat-number">WhatsApp-First</span>
+                    <span class="stat-label">Native integration where real deals are made</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number">✨</span>
-                    <span class="stat-label">Featured in [press or accelerator if any]</span>
+                    <span class="stat-number">AI-Native</span>
+                    <span class="stat-label">No templates, no guesswork. Real-time, adaptive messaging</span>
                 </div>
             </div>
-
-            <p>We're proving this is a <span class="highlight">must-have</span>, not a nice-to-have.</p>
+<p></p>
+            <p>Followupx doesn't add to the business owner's workload. It removes it.</p>
         </div>
 
         <!-- Slide 8: Roadmap -->
         <div class="slide">
             <h2>The Next 12 Months</h2>
-
             <div class="roadmap">
                 <div class="roadmap-item">
                     <div class="roadmap-quarter">Q1 – Q2</div>
@@ -615,34 +622,31 @@
                 </div>
             </div>
 
-            <p><strong>Our goal: $1M ARR in 12 months</strong></p>
+            <p><strong>Our goal: $100K ARR in 12 months</strong></p>
         </div>
 
         <!-- Slide 9: Investment Ask -->
         <div class="slide accent">
             <h2>Let's Scale Followupx Together</h2>
-            <p>We're raising <strong>$500K</strong> to:</p>
+            <p>We're raising <strong>$200K</strong> to reach $100K in the next 12 month. This will fund:</p>
 
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <div class="feature-title">Grow Team</div>
-                    <div class="feature-desc">Engineering + AI team expansion</div>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-title">👥 Grow Team</div>
+                    <div class="stat-desc">Engineering + AI team expansion</div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <div class="feature-title">Scale Marketing</div>
-                    <div class="feature-desc">Expand customer acquisition channels</div>
+                <div class="stat-card">
+                    <div class="stat-title">📈 Scale Marketing</div>
+                    <div class="stat-desc">Expand customer acquisition channels</div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔗</div>
-                    <div class="feature-title">Deepen Integrations</div>
-                    <div class="feature-desc">WhatsApp & CRM integrations</div>
+                <div class="stat-card">
+                    <div class="stat-title">🔗 Deepen Integrations</div>
+                    <div class="stat-desc">WhatsApp & CRM integrations</div>
                 </div>
             </div>
-
+<p></p>
             <p><strong>Targeting 18-month runway to Series A readiness.</strong></p>
-            <p>Let's build the future of follow-up—one message at a time.</p>
+            <p>Let's build the future of follow up one message at a time.</p>
         </div>
 
         <!-- Slide 10: Thank You -->
@@ -653,10 +657,10 @@
                 growth they deserve.</p>
 
             <div class="contact-info">
-                <p><strong>[Founder Name]</strong></p>
+                <p><strong>Alex</strong></p>
                 <p>Co-Founder, Followupx</p>
-                <p>✉️ [email] | 🌐 [website] | 📱 [LinkedIn]</p>
-            </div>
+                <p>✉️ [ogubuikealex@gmail.com]</p>
+            </div>            
 
             <p style="margin-top: 40px; font-size: 1.2rem; color: #fbbf24;"><strong>Let's dive into your
                     questions.</strong></p>
