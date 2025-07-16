@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Followupx - The Fortune Is in the Follow-Up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+        }
+
+        .slide {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            scroll-snap-align: start;
+            position: relative;
+            background: white;
+            margin-right: 2px;
+        }
+
+        .slide.dark {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+        }
+
+        .slide.accent {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .slide h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .slide h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #667eea;
+        }
+
+        .slide.dark h2,
+        .slide.accent h2 {
+            color: #fbbf24;
+        }
+
+        .slide p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            max-width: 900px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .slide ul {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            text-align: left;
+            list-style: none;
+            padding: 0;
+        }
+
+        .slide li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .slide li:before {
+            content: '•';
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.5em;
+        }
+
+        .slide.dark li:before,
+        .slide.accent li:before {
+            color: #fbbf24;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+        }
+
+        .quote {
+            font-size: 2rem;
+            font-style: italic;
+            color: #fbbf24;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote:before,
+        .quote:after {
+            content: '"';
+            font-size: 3rem;
+            color: #fbbf24;
+            opacity: 0.7;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card.white {
+            background: white;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fbbf24;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-card.white .stat-number {
+            color: #dc2626;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card.white {
+            background: white;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+
+        .feature-card.white .feature-title {
+            color: #667eea;
+        }
+
+        .feature-desc {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: #fbbf24;
+            transform: scale(1.2);
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .highlight {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .slide.dark .highlight,
+        .slide.accent .highlight {
+            color: #fbbf24;
+        }
+
+        .checkmark {
+            color: #10b981;
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .slide.dark .checkmark,
+        .slide.accent .checkmark {
+            color: #34d399;
+        }
+
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px 0;
+        }
+
+        .roadmap-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: left;
+            border-left: 4px solid #fbbf24;
+        }
+
+        .roadmap-quarter {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 15px;
+        }
+
+        .roadmap-item ul {
+            margin-top: 10px;
+        }
+
+        .roadmap-item li {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .placeholder {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 20px 0;
+        }
+
+        .why-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .why-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fbbf24;
+            margin-bottom: 20px;
+        }
+
+        .why-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+            }
+
+            .slide h1 {
+                font-size: 2.5rem;
+            }
+
+            .slide h2 {
+                font-size: 2rem;
+            }
+
+            .slide p {
+                font-size: 1.1rem;
+            }
+
+            .quote {
+                font-size: 1.5rem;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .roadmap {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container" id="slideContainer">
+        <!-- Slide 1: Compelling Opening -->
+        <div class="slide accent">
+            <div class="quote">I was interested… but no one ever got back to me.</div>
+            <p>Every year, millions of potential customers say these words—and walk away. Small business owners are
+                hustling day and night, but they're dropping the ball on follow-ups… and it's costing them more than
+                they realize.</p>
+            <div class="logo">followupx</div>
+            <p><strong>The AI-powered assistant that makes sure they never miss a follow-up again—on WhatsApp and Email,
+                    where business actually happens.</strong></p>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide">
+            <h2>A $60B Silent Killer</h2>
+            <p>Inconsistent follow-up is a silent killer of small business revenue.</p>
+
+            <div class="stat-grid">
+                <div class="stat-card white">
+                    <span class="stat-number">80%</span>
+                    <span class="stat-label">of sales require 5+ follow-ups</span>
+                </div>
+                <div class="stat-card white">
+                    <span class="stat-number">44%</span>
+                    <span class="stat-label">give up after just one</span>
+                </div>
+                <div class="stat-card white">
+                    <span class="stat-number">$60B</span>
+                    <span class="stat-label">in lost revenue annually</span>
+                </div>
+            </div>
+
+            <div class="why-section">
+                <div class="why-title">Why?</div>
+                <div class="why-text">They forget. They get overwhelmed. They don't know what to say.</div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Solution -->
+        <div class="slide dark">
+            <h2>AI That Follows Up Like a Human (Only Better)</h2>
+            <p><strong>Followupx</strong> is your smart, always-on follow-up assistant.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-title">Timely Follow-ups</div>
+                    <div class="feature-desc">Crafts human-like follow-ups via WhatsApp and Email</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-title">Context Aware</div>
+                    <div class="feature-desc">Understands tone, urgency, and context</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-title">Plug & Play</div>
+                    <div class="feature-desc">Works out-of-the-box with CRMs, calendars, and lead forms</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-title">Trust Builder</div>
+                    <div class="feature-desc">Builds trust with prospects—automatically</div>
+                </div>
+            </div>
+
+            <p><strong>Result:</strong> More closed deals. Less mental load. No more lost opportunities.</p>
+        </div>
+
+        <!-- Slide 4: Market Opportunity -->
+        <div class="slide">
+            <h2>33M Business Owners Need Help</h2>
+
+            <div class="stat-grid">
+                <div class="stat-card white">
+                    <div class="feature-icon">📈</div>
+                    <span class="stat-number">33M</span>
+                    <span class="stat-label">small businesses in the U.S. alone</span>
+                </div>
+                <div class="stat-card white">
+                    <div class="feature-icon">🌍</div>
+                    <span class="stat-number">Millions</span>
+                    <span class="stat-label">more globally, struggling with follow-up</span>
+                </div>
+                <div class="stat-card white">
+                    <div class="feature-icon">📱</div>
+                    <span class="stat-number">2B+</span>
+                    <span class="stat-label">active WhatsApp users</span>
+                </div>
+            </div>
+
+            <p>💼 The future of business communication is <span class="highlight">messaging-first</span>, and <span
+                    class="highlight">AI-native</span></p>
+            <p>We're not just tapping into a large market—we're riding two unstoppable waves: <strong>AI +
+                    Messaging.</strong></p>
+        </div>
+
+        <!-- Slide 5: Business Model -->
+        <div class="slide accent">
+            <h2>Built to Scale Profitably</h2>
+            <p><strong>SaaS pricing tiers</strong> based on number of leads, messages, and integrations.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Low Churn</div>
+                    <div class="feature-desc">Deep integration into daily revenue activities</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-title">High LTV:CAC</div>
+                    <div class="feature-desc">5:1 ratio projected by Year 1</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <div class="feature-title">Expansion Revenue</div>
+                    <div class="feature-desc">Team seats and vertical-specific AI templates</div>
+                </div>
+            </div>
+
+            <p><strong>When we help businesses close more deals, they stick around.</strong></p>
+        </div>
+
+        <!-- Slide 6: Competitive Advantage -->
+        <div class="slide">
+            <h2>Why We Win</h2>
+
+            <div class="feature-grid">
+                <div class="feature-card white">
+                    <div class="feature-icon">🚀</div>
+                    <div class="feature-title">Focused on SMBs</div>
+                    <div class="feature-desc">Not bloated CRMs or enterprise-only tools</div>
+                </div>
+                <div class="feature-card white">
+                    <div class="feature-icon">💬</div>
+                    <div class="feature-title">WhatsApp-First</div>
+                    <div class="feature-desc">Native integration where real deals are made</div>
+                </div>
+                <div class="feature-card white">
+                    <div class="feature-icon">🧠</div>
+                    <div class="feature-title">AI-Native</div>
+                    <div class="feature-desc">No templates, no guesswork. Real-time, adaptive messaging</div>
+                </div>
+            </div>
+
+            <p><strong>Followupx doesn't add to the business owner's workload. It removes it.</strong></p>
+        </div>
+
+        <!-- Slide 7: Traction -->
+        <div class="slide dark">
+            <h2>Proof It's Working</h2>
+
+            <div class="placeholder">
+                [Placeholder for: # of beta users, conversion lifts, retention, revenue, etc.]
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-number">3x</span>
+                    <span class="stat-label">increase in closed leads for early adopters</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">60%+</span>
+                    <span class="stat-label">of users set up follow-ups within first 15 minutes</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">✨</span>
+                    <span class="stat-label">Featured in [press or accelerator if any]</span>
+                </div>
+            </div>
+
+            <p>We're proving this is a <span class="highlight">must-have</span>, not a nice-to-have.</p>
+        </div>
+
+        <!-- Slide 8: Roadmap -->
+        <div class="slide">
+            <h2>The Next 12 Months</h2>
+
+            <div class="roadmap">
+                <div class="roadmap-item">
+                    <div class="roadmap-quarter">Q1 – Q2</div>
+                    <ul>
+                        <li>Launch v1 (WhatsApp + Email)</li>
+                        <li>Onboard first 1,000 paying users</li>
+                        <li>Refine AI personalization engine</li>
+                    </ul>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-quarter">Q3 – Q4</div>
+                    <ul>
+                        <li>Scale marketing and referral engine</li>
+                        <li>Add voice note and calendar syncing</li>
+                        <li>Expand to LATAM + African markets with WhatsApp-heavy usage</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p><strong>Our goal: $1M ARR in 12 months</strong></p>
+        </div>
+
+        <!-- Slide 9: Investment Ask -->
+        <div class="slide accent">
+            <h2>Let's Scale Followupx Together</h2>
+            <p>We're raising <strong>$500K</strong> to:</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-title">Grow Team</div>
+                    <div class="feature-desc">Engineering + AI team expansion</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <div class="feature-title">Scale Marketing</div>
+                    <div class="feature-desc">Expand customer acquisition channels</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <div class="feature-title">Deepen Integrations</div>
+                    <div class="feature-desc">WhatsApp & CRM integrations</div>
+                </div>
+            </div>
+
+            <p><strong>Targeting 18-month runway to Series A readiness.</strong></p>
+            <p>Let's build the future of follow-up—one message at a time.</p>
+        </div>
+
+        <!-- Slide 10: Thank You -->
+        <div class="slide dark">
+            <h2>Let's Talk</h2>
+            <p>Thank you for your time.</p>
+            <p>We're on a mission to help small business owners close more deals, stress less, and finally unlock the
+                growth they deserve.</p>
+
+            <div class="contact-info">
+                <p><strong>[Founder Name]</strong></p>
+                <p>Co-Founder, Followupx</p>
+                <p>✉️ [email] | 🌐 [website] | 📱 [LinkedIn]</p>
+            </div>
+
+            <p style="margin-top: 40px; font-size: 1.2rem; color: #fbbf24;"><strong>Let's dive into your
+                    questions.</strong></p>
+        </div>
+    </div>
+
+    <div class="navigation" id="navigation">
+        <!-- Navigation dots will be generated by JavaScript -->
+    </div>
+
+    <script>
+        // Generate navigation dots
+        const slides = document.querySelectorAll('.slide');
+        const navigation = document.getElementById('navigation');
+        const slideContainer = document.getElementById('slideContainer');
+
+        slides.forEach((slide, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('nav-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            navigation.appendChild(dot);
+        });
+
+        function goToSlide(index) {
+            const slideWidth = slides[0].offsetWidth;
+            slideContainer.scrollLeft = slideWidth * index;
+
+            // Update active dot
+            document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const currentSlide = Math.round(slideContainer.scrollLeft / slides[0].offsetWidth);
+            if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+                goToSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                goToSlide(currentSlide - 1);
+            }
+        });
+
+        // Update active dot on scroll
+        slideContainer.addEventListener('scroll', () => {
+            const currentSlide = Math.round(slideContainer.scrollLeft / slides[0].offsetWidth);
+            document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        });
+    </script>
+</body>
+
+</html>
